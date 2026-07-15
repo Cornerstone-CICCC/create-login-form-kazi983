@@ -1,0 +1,330 @@
+:root {
+  --text-base: #afb6c2;
+  --text-title: #d4ccb6;
+  --background: #191816;
+  --form-background: #24221f;
+  --primary-color: #ffc632;
+}
+
+/* ============= */
+/* Reset         */
+/* ============= */
+*,
+*::before {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/* ============= */
+/* Base          */
+/* ============= */
+body {
+  color: var(--text-base);
+  background-color: var(--background);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+input[type='checkbox'] {
+  appearance: none;
+  width: 1.3rem;
+  height: 1.3rem;
+  border: 2px solid var(--text-base);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+}
+input[type='checkbox']:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+input[type='checkbox']::before {
+  content: '';
+  width: 0.8em;
+  height: 0.8em;
+  transform: scale(0);
+  transition: transform 0.1s ease-in-out;
+
+  background-image: url('images/check.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+input[type='checkbox']:checked::before {
+  transform: scale(1);
+}
+input[type='checkbox']:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* ============= */
+/* Header        */
+/* ============= */
+header {
+  height: 2rem;
+  margin: 2rem 1rem 1rem;
+
+  display: flex;
+  direction: column;
+  align-items: center;
+}
+
+.logo {
+  height: 1.5rem;
+  width: 100%;
+  background-color: var(--text-title);
+  mask-image: url(images/logo.svg);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
+/* ============= */
+/* Login form    */
+/* ============= */
+fieldset {
+  border-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+h3 {
+  color: var(--text-title);
+}
+h3::before {
+  content: url(images/log-in.svg);
+  font-size: 1rem;
+
+  text-align: center;
+  vertical-align: text-top;
+  padding-right: 0.5rem;
+}
+
+.login-field {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-field input {
+  margin-top: 0.4rem;
+
+  height: 3rem;
+  border: 1px solid var(--text-base);
+  border-radius: 4px;
+  background-repeat: no-repeat;
+  background-color: inherit;
+  background-position: 0.75rem center;
+  padding-left: 2.5rem;
+
+  color: var(--text-base);
+}
+.login-field input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  border-width: 2px;
+}
+
+#userEmail {
+  background-image: url(images/mail.svg);
+}
+#userEmail:focus {
+  background-image: url(images/mail-focus.svg);
+}
+
+#userPassword {
+  background-image: url(images/lock.svg);
+}
+#userPassword:focus {
+  background-image: url(images/lock-focus.svg);
+}
+
+.login-help {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-block: 0.5rem;
+}
+
+.login-remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.login-signup-link {
+  display: flex;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+#login-btn {
+  height: 3rem;
+  background-color: var(--primary-color);
+  text-transform: uppercase;
+}
+
+@media screen and (width > 600px) {
+  fieldset {
+    background-color: var(--form-background);
+  }
+}
+
+/* ============================================== */
+/* Checkbox                                       */
+/* https://getcssscan.com/css-checkboxes-examples */
+/* ============================================== */
+
+.checkbox-wrapper-4 * {
+  box-sizing: border-box;
+}
+.checkbox-wrapper-4 .cbx {
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+.checkbox-wrapper-4 .cbx:not(:last-child) {
+  margin-right: 6px;
+}
+.checkbox-wrapper-4 .cbx:hover {
+  background: rgba(0, 119, 255, 0.06);
+}
+.checkbox-wrapper-4 .cbx span {
+  float: left;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+.checkbox-wrapper-4 .cbx span:first-child {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  transform: scale(1);
+  border: 1px solid #cccfdb;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 1px rgba(0, 16, 75, 0.05);
+}
+.checkbox-wrapper-4 .cbx span:first-child svg {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+.checkbox-wrapper-4 .cbx span:last-child {
+  padding-left: 8px;
+  line-height: 18px;
+}
+.checkbox-wrapper-4 .cbx:hover span:first-child {
+  border-color: var(--primary-color);
+}
+.checkbox-wrapper-4 .inp-cbx {
+  position: absolute;
+  visibility: hidden;
+}
+.checkbox-wrapper-4 .inp-cbx:checked + .cbx span:first-child {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  animation: wave-4 0.4s ease;
+}
+.checkbox-wrapper-4 .inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+.checkbox-wrapper-4 .inline-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  user-select: none;
+}
+@media screen and (max-width: 640px) {
+  .checkbox-wrapper-4 .cbx {
+    width: 100%;
+    display: inline-block;
+  }
+}
+@-moz-keyframes wave-4 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+@-webkit-keyframes wave-4 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+@-o-keyframes wave-4 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+@keyframes wave-4 {
+  50% {
+    transform: scale(0.9);
+  }
+}
