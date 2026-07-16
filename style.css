@@ -72,9 +72,10 @@ a {
 }
 input[type='checkbox'] {
   appearance: none;
-  width: 1.3rem;
-  height: 1.3rem;
-  border: 2px solid var(--text-base);
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--text-base);
+  border-radius: 2px;
 
   display: inline-flex;
   align-items: center;
@@ -88,21 +89,18 @@ input[type='checkbox']:checked {
 }
 input[type='checkbox']::before {
   content: '';
-  width: 0.8em;
-  height: 0.8em;
+  width: 1em;
+  height: 1em;
   transform: scale(0);
   transition: transform 0.1s ease-in-out;
 
   background-image: url('images/check.svg');
   background-size: contain;
+  background-position: center;
   background-repeat: no-repeat;
 }
 input[type='checkbox']:checked::before {
   transform: scale(1);
-}
-input[type='checkbox']:focus-visible {
-  outline: 2px solid #0066cc;
-  outline-offset: 2px;
 }
 
 /* ============= */
@@ -127,8 +125,58 @@ header {
 }
 
 /* ============= */
+/* Body grid     */
+/* ============= */
+body {
+  min-height: 100vh;
+}
+.body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+header {
+  grid-column: 1 / -1;
+}
+.login-container {
+  grid-column: 1 / -1;
+}
+.grid-side {
+  display: none;
+
+  background-image: url(images/side-image-2x.jpg);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+@media screen and (width > 600px) {
+  header {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+  }
+  .login-container {
+    grid-column: 1 / 1;
+    grid-row: 2 / 2;
+  }
+  .grid-side {
+    display: block;
+
+    grid-column: 2 / 2;
+    grid-row: 1 / span 2;
+  }
+}
+
+/* ============= */
 /* Login form    */
 /* ============= */
+
+@media screen and (width > 600px) {
+  form {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: 3rem 15%;
+    background-color: var(--form-background);
+  }
+}
+
 fieldset {
   border-width: 0;
   display: flex;
@@ -136,55 +184,102 @@ fieldset {
   gap: 0.5rem;
 }
 
-h3 {
-  color: var(--text-title);
+legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  /* Hide the element with a 50% inset from all sides */
+  border: 0;
+  white-space: nowrap;
 }
-h3::before {
-  content: url(images/log-in.svg);
-  font-size: 1rem;
 
-  text-align: center;
-  vertical-align: text-top;
-  padding-right: 0.5rem;
+.login-title {
+  color: var(--text-title);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.login-title::before {
+  content: '';
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url(images/log-in.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .login-field {
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
+  gap: 0.4rem;
 }
 
-.login-field input {
-  margin-top: 0.4rem;
+.input-container {
+  position: relative;
+}
 
+.input-container input {
   height: 3rem;
+  width: 100%;
   border: 1px solid var(--text-base);
   border-radius: 4px;
-  background-repeat: no-repeat;
-  background-color: inherit;
-  background-position: 0.75rem center;
+
   padding-left: 2.5rem;
 
-  color: var(--text-base);
-}
-.login-field input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  border-width: 2px;
+  color: var(--background);
+
+  transition: all 0.2s ease-in-out;
 }
 
-#userEmail {
+.input-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  border-width: 1px;
+}
+
+.input-container::before,
+.input-container::after {
+  content: '';
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute; /* necessary to make visible*/
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: inherit;
+  background-position: center;
+}
+
+.email-container::before {
   background-image: url(images/mail.svg);
 }
-#userEmail:focus {
+.email-container::after {
   background-image: url(images/mail-focus.svg);
 }
 
-#userPassword {
+.password-container::before {
   background-image: url(images/lock.svg);
 }
-#userPassword:focus {
+.password-container::after {
   background-image: url(images/lock-focus.svg);
+}
+
+.input-container::after {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.input-container:focus-within::after {
+  /* within - targets itself or any of its descendant elements*/
+  opacity: 1;
 }
 
 .login-help {
@@ -214,117 +309,4 @@ h3::before {
   height: 3rem;
   background-color: var(--primary-color);
   text-transform: uppercase;
-}
-
-@media screen and (width > 600px) {
-  fieldset {
-    background-color: var(--form-background);
-  }
-}
-
-/* ============================================== */
-/* Checkbox                                       */
-/* https://getcssscan.com/css-checkboxes-examples */
-/* ============================================== */
-
-.checkbox-wrapper-4 * {
-  box-sizing: border-box;
-}
-.checkbox-wrapper-4 .cbx {
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: pointer;
-  padding: 6px 8px;
-  border-radius: 6px;
-  overflow: hidden;
-  transition: all 0.2s ease;
-  display: inline-block;
-}
-.checkbox-wrapper-4 .cbx:not(:last-child) {
-  margin-right: 6px;
-}
-.checkbox-wrapper-4 .cbx:hover {
-  background: rgba(0, 119, 255, 0.06);
-}
-.checkbox-wrapper-4 .cbx span {
-  float: left;
-  vertical-align: middle;
-  transform: translate3d(0, 0, 0);
-}
-.checkbox-wrapper-4 .cbx span:first-child {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
-  transform: scale(1);
-  border: 1px solid #cccfdb;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 1px rgba(0, 16, 75, 0.05);
-}
-.checkbox-wrapper-4 .cbx span:first-child svg {
-  position: absolute;
-  top: 3px;
-  left: 2px;
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 16px;
-  stroke-dashoffset: 16px;
-  transition: all 0.3s ease;
-  transition-delay: 0.1s;
-  transform: translate3d(0, 0, 0);
-}
-.checkbox-wrapper-4 .cbx span:last-child {
-  padding-left: 8px;
-  line-height: 18px;
-}
-.checkbox-wrapper-4 .cbx:hover span:first-child {
-  border-color: var(--primary-color);
-}
-.checkbox-wrapper-4 .inp-cbx {
-  position: absolute;
-  visibility: hidden;
-}
-.checkbox-wrapper-4 .inp-cbx:checked + .cbx span:first-child {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-  animation: wave-4 0.4s ease;
-}
-.checkbox-wrapper-4 .inp-cbx:checked + .cbx span:first-child svg {
-  stroke-dashoffset: 0;
-}
-.checkbox-wrapper-4 .inline-svg {
-  position: absolute;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  user-select: none;
-}
-@media screen and (max-width: 640px) {
-  .checkbox-wrapper-4 .cbx {
-    width: 100%;
-    display: inline-block;
-  }
-}
-@-moz-keyframes wave-4 {
-  50% {
-    transform: scale(0.9);
-  }
-}
-@-webkit-keyframes wave-4 {
-  50% {
-    transform: scale(0.9);
-  }
-}
-@-o-keyframes wave-4 {
-  50% {
-    transform: scale(0.9);
-  }
-}
-@keyframes wave-4 {
-  50% {
-    transform: scale(0.9);
-  }
 }
