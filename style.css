@@ -220,7 +220,7 @@ legend::before {
 
   padding-left: 2.5rem;
 
-  color: var(--background);
+  color: var(--text-base);
   background-color: inherit;
 
   transition: all 0.2s ease-in-out;
