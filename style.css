@@ -233,6 +233,7 @@ legend {
   padding-left: 2.5rem;
 
   color: var(--background);
+  background-color: inherit;
 
   transition: all 0.2s ease-in-out;
 }
