@@ -215,7 +215,7 @@ legend::before {
   border: 1px solid var(--text-base);
   border-radius: 4px;
 
-  padding-left: 2.5rem;
+  padding-left: 2.75rem;
 
   color: var(--text-base);
   background-color: inherit;
@@ -234,7 +234,7 @@ legend::before {
   width: 1.5rem;
   height: 1.5rem;
   position: absolute; /* necessary to make visible*/
-  left: 0.5rem;
+  left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
 
@@ -265,6 +265,21 @@ legend::before {
 .input-container:focus-within::after {
   /* within - targets itself or any of its descendant elements*/
   opacity: 1;
+}
+
+.eye-icon-wrapper {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
 }
 
 .login-help {
