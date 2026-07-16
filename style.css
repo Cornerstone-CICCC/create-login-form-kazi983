@@ -294,7 +294,7 @@ legend::before {
   color: var(--primary-color);
 }
 
-#login-btn {
+.login-btn {
   height: 3rem;
   background-color: var(--primary-color);
   text-transform: uppercase;
