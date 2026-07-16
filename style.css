@@ -185,25 +185,13 @@ fieldset {
 }
 
 legend {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  /* Hide the element with a 50% inset from all sides */
-  border: 0;
-  white-space: nowrap;
-}
-
-.login-title {
   color: var(--text-title);
+  font-size: 1.75rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
-.login-title::before {
+legend::before {
   content: '';
   width: 1.5rem;
   height: 1.5rem;
