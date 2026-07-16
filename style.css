@@ -167,7 +167,7 @@ header {
 
 @media screen and (min-width: 600px) {
   form {
-    max-width: 600px;
+    max-width: 650px;
     margin-inline: auto;
     padding: 3rem 15%;
     background-color: var(--form-background);
@@ -288,6 +288,7 @@ legend::before {
   align-content: center;
   align-items: center;
   justify-content: space-between;
+  gap: 0.5rem;
 
   margin-block: 0.5rem;
 }
